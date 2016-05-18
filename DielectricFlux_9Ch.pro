@@ -16,6 +16,7 @@ SOURCES += main.cpp \
     System_main.cpp
 
 HEADERS  += \
-    System_main.h
+    System_main.h \
+    types.h
 
 FORMS    +=

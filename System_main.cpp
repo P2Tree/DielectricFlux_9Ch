@@ -8,6 +8,7 @@
   ******************************************************/
 
 #include "System_main.h"
+#include "types.h"
 
 void System_main() {
     System_setup();
@@ -20,7 +21,7 @@ void System_setup(){
         ///TODO(Yang Liuming) PoweroffRecoveryCheck
        System_initialization();
     }
-    catch(int) {
+    catch(exception_t) {
 
     }
 }
