@@ -1,5 +1,5 @@
 /**
-  * \file	System_main.cpp
+  * \file	System_main
   * \brief	Basic main Enter of Project
   * \author	Yang Liuming <dicksonliuming@gmail.com>
   * \version	V1.0
@@ -8,37 +8,25 @@
   ******************************************************/
 
 #include "System_main.h"
-#include "types.h"
 
 void System_main() {
-    System_setup();
-    for(;;)
-        System_loop();
-}
-
-void System_setup(){
     try {
-        ///TODO(Yang Liuming) PoweroffRecoveryCheck
-       System_initialization();
+        /// TODO(Yang Liuming) PoweroffRecoveryCheck
+        /// TODO(Yang Liuming) if PoweroffRecoveryCheck is off
+        System_initialization();
+        /// TODO(Yang Liuming) if PoweroffRecoveryCheck is on
     }
     catch(exception_t) {
-
-    }
-}
-
-void System_loop() {
-    try {
-        System_baseMessageQueueCheck();
-    }
-    catch(int) {
-
     }
 }
 
 void System_initialization() {
 
+    /// Initialization all needed window, it always upload buttomwindow and standbywindow.
+    /// An interface of window is set.
+    WindowInterface windowInterface;
+    windowInterface.showWindow();
+
+
 }
 
-void System_baseMessageQueueCheck() {
-
-}

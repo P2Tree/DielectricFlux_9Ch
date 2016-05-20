@@ -30,12 +30,15 @@
  * ***********************************************************/
 
 #include "System_main.h"
+#include "buttomwindow.h"
+
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    System_main();
+    System_main();      // only for windows initialization & event initialization
+
     return a.exec();
 }
