@@ -1,9 +1,9 @@
 #ifndef WINDOWINTERFACE_H
 #define WINDOWINTERFACE_H
 
-#include "buttomwindow.h"
 
 class ButtomWindow;
+class StandbyWindow;
 
 class WindowInterface
 {
@@ -13,7 +13,8 @@ public:
     void showWindow(void);
 
 private:
-    ButtomWindow *buttomWindow;
+    //ButtomWindow *buttomWindow;
+    StandbyWindow *standbyWindow;
 };
 
 #endif // WINDOWINTERFACE_H

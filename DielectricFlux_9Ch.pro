@@ -15,12 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp \
     System_main.cpp \
     buttomwindow.cpp \
-    windowinterface.cpp
+    windowinterface.cpp \
+    standbywindow.cpp
 
 HEADERS  += \
     System_main.h \
     types.h \
     buttomwindow.h \
-    windowinterface.h
+    windowinterface.h \
+    standbywindow.h
 
 FORMS    +=

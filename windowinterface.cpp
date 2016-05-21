@@ -9,11 +9,15 @@
   *********************************************************/
 #include "windowinterface.h"
 
+#include "buttomwindow.h"
+#include "standbywindow.h"
+
 WindowInterface::WindowInterface()
 {
-    buttomWindow = new ButtomWindow;
+    //buttomWindow = new ButtomWindow;
+    standbyWindow = new StandbyWindow;
 }
 
 void WindowInterface::showWindow() {
-    buttomWindow->show();
+    standbyWindow->show();
 }

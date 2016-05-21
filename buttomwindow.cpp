@@ -7,8 +7,17 @@
   *
   ********************************************************/
 
+
 #include "buttomwindow.h"
 
+#include "System_main.h"
+#include "types.h"
+#include <QMainWindow>
+#include <QtGui/QGridLayout>
+#include <QtGui/QLineEdit>
+#include <QtGui/QApplication>
+#include <QtGui/QLabel>
+#include <QtGui/QPushButton>
 
 ButtomWindow::ButtomWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -16,7 +25,6 @@ ButtomWindow::ButtomWindow(QWidget *parent) :
 
     setupUi(this);
     retranslateUi(this);
-
     QMetaObject::connectSlotsByName(this);
     
 }
@@ -54,7 +62,7 @@ void ButtomWindow::setupUi(ButtomWindow *buttomWindow) {
 
 }
 
-void ButtomWindow::retranslateUi(QMainWindow *buttomWindow) {
+void ButtomWindow::retranslateUi(ButtomWindow *buttomWindow) {
     buttomWindow->setWindowTitle(QApplication::translate("ButtomWindow",
                                "ButtomWindow", 0, QApplication::UnicodeUTF8));
 }

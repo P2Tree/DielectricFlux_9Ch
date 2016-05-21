@@ -12,15 +12,26 @@
 void System_main() {
     try {
         /// TODO(Yang Liuming) PoweroffRecoveryCheck
-        /// TODO(Yang Liuming) if PoweroffRecoveryCheck is off
+        // if PoweroffRecoveryCheck is off
         System_initialization();
-        /// TODO(Yang Liuming) if PoweroffRecoveryCheck is on
+        // if PoweroffRecoveryCheck is on
+        // add recovery code
     }
     catch(exception_t) {
     }
 }
 
 void System_initialization() {
+
+    // device service initialization
+
+    // timer service initialization
+
+    // message queue initialization
+
+    // system file initialization
+
+    // reading boot file and initialize system variables
 
     /// Initialization all needed window, it always upload buttomwindow and standbywindow.
     /// An interface of window is set.
