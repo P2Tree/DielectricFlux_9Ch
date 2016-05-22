@@ -13,9 +13,18 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    System_main.cpp
+    System_main.cpp \
+    buttomwindow.cpp \
+    windowinterface.cpp \
+    standbywindow.cpp \
+    debugwindow.cpp
 
 HEADERS  += \
-    System_main.h
+    System_main.h \
+    types.h \
+    buttomwindow.h \
+    windowinterface.h \
+    standbywindow.h \
+    debugwindow.h
 
 FORMS    +=
