@@ -24,6 +24,7 @@
  * \file    main.cpp
  * \brief   Enter of DielectricFlux Project
  * \author  Yang Liuming <dicksonliuming@gmail.com>
+ * \author  Li Haotian <>
  * \version V1.0
  * \date    2016.5
  *
