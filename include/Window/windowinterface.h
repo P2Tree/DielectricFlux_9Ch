@@ -1,7 +1,6 @@
 #ifndef WINDOWINTERFACE_H
 #define WINDOWINTERFACE_H
 
-
 class ButtomWindow;
 class StandbyWindow;
 class DebugWindow;
