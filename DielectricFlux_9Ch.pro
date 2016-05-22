@@ -11,20 +11,23 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = DielectricFlux_9Ch
 TEMPLATE = app
 
+INCLUDEPATH += ./include/window/ \
+    ./include
 
-SOURCES += main.cpp \
-    System_main.cpp \
-    buttomwindow.cpp \
-    windowinterface.cpp \
-    standbywindow.cpp \
-    debugwindow.cpp
+SOURCES += \
+    source/System_main.cpp \
+    source/main.cpp \
+    source/Window/windowinterface.cpp \
+    source/Window/standbywindow.cpp \
+    source/Window/debugwindow.cpp \
+    source/Window/buttomwindow.cpp
 
 HEADERS  += \
-    System_main.h \
-    types.h \
-    buttomwindow.h \
-    windowinterface.h \
-    standbywindow.h \
-    debugwindow.h
+    include/types.h \
+    include/System_main.h \
+    include/Window/windowinterface.h \
+    include/Window/standbywindow.h \
+    include/Window/debugwindow.h \
+    include/Window/buttomwindow.h
 
 FORMS    +=

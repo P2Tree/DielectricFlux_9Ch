@@ -23,7 +23,7 @@
 #define BUTTOMWINDOW_H
 
 #include <QMainWindow>
-#include <types.h>
+#include "../types.h"
 
 //contrl panel
 #define LENGTH  800
