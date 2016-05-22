@@ -10,6 +10,14 @@ typedef signed short s16_t;
 typedef signed int s32_t;
 
 /// exception procession type
-typedef unsigned int exception_t;
+enum exception_t {
+
+};
+
+/// debug flag type
+enum debug_t {
+    OpenDebug,
+    CloseDebug
+};
 
 #endif // TYPES_H

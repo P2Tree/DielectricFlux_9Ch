@@ -5,6 +5,10 @@
 class ButtomWindow;
 class StandbyWindow;
 
+enum WindowFlag {
+    StandbyFlag
+};
+
 class WindowInterface
 {
 public:
@@ -12,9 +16,14 @@ public:
 
     void showWindow(void);
 
+    void changeCurrentWindow(WindowFlag const);
+    WindowFlag getCurrentWindow(void);
+
 private:
     //ButtomWindow *buttomWindow;
     StandbyWindow *standbyWindow;
+
+    static WindowFlag currentWindowFlag;
 };
 
 #endif // WINDOWINTERFACE_H

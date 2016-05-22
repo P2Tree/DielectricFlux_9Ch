@@ -29,3 +29,7 @@ void StandbyWindow::setupButtonLayout () {
     buttonLayout->addWidget(standbyButtonSetup);
     buttonLayout->addWidget(standbyButtonAbout);
 }
+
+void retranslateUi(StandbyWindow * const standbyWindow) {
+
+}

@@ -1,4 +1,4 @@
-/**
+/**qt
   * \file   WindowInterface
   * \brief  This file is used to supply an interface of window calling and use
             and the interface is windowinterface
@@ -12,6 +12,8 @@
 #include "buttomwindow.h"
 #include "standbywindow.h"
 
+WindowFlag WindowInterface::currentWindowFlag = StandbyFlag;
+
 WindowInterface::WindowInterface()
 {
     //buttomWindow = new ButtomWindow;
@@ -20,4 +22,12 @@ WindowInterface::WindowInterface()
 
 void WindowInterface::showWindow() {
     standbyWindow->show();
+}
+
+void WindowInterface::changeCurrentWindow(WindowFlag const flag) {
+    WindowInterface::currentWindowFlag = flag;
+}
+
+WindowFlag WindowInterface::getCurrentWindow() {
+    return WindowInterface::currentWindowFlag;
 }

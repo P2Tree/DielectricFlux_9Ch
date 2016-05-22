@@ -18,6 +18,7 @@
 #include <QtGui/QApplication>
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
+#include <QtGui/QMessageBox>
 
 ButtomWindow::ButtomWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -25,8 +26,7 @@ ButtomWindow::ButtomWindow(QWidget *parent) :
 
     setupUi(this);
     retranslateUi(this);
-    QMetaObject::connectSlotsByName(this);
-    
+    connect(debugButton, SIGNAL(clicked()), this, SLOT(debugButtonClicked()));
 }
 
 ButtomWindow::~ButtomWindow() {
@@ -49,6 +49,10 @@ void ButtomWindow::setupUi(ButtomWindow *buttomWindow) {
     mainLogoTitle = new QLabel(tr("CABR"));
     buttonLayout = new QVBoxLayout;
 
+    if (DebugModE == OpenDebug) {
+        debugButton = new QPushButton(tr("Debug Window"));
+        buttonLayout->addWidget(debugButton);
+    }
 
     centralLayout->addWidget(mainTitle, 0, 0);
     //mainLayout->addWidget(mainLogo, 0, 1);
@@ -65,4 +69,27 @@ void ButtomWindow::setupUi(ButtomWindow *buttomWindow) {
 void ButtomWindow::retranslateUi(ButtomWindow *buttomWindow) {
     buttomWindow->setWindowTitle(QApplication::translate("ButtomWindow",
                                "ButtomWindow", 0, QApplication::UnicodeUTF8));
+}
+
+void ButtomWindow::debugMessageBox(ButtomWindow *const buttomWindow) {
+    switch(QMessageBox::warning(buttomWindow, "Debug Window", "debug content",
+                                QMessageBox::Ok, QMessageBox::Ok))
+    {
+    case QMessageBox::Ok:
+           break;
+    default:
+           break;
+    }
+}
+
+void ButtomWindow::debugLayout(ButtomWindow *const buttomWindow) {
+
+}
+
+/// slot functions in buttomwindow
+void ButtomWindow::debugButtonClicked() {
+    WindowInterface windowInterface;
+    WindowFlag currentWindowFlag = windowInterface.getCurrentWindow();
+    if (currentWindowFlag == StandbyFlag)
+        debugMessageBox(this);
 }
