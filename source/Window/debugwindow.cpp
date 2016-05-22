@@ -1,3 +1,11 @@
+/**
+ *  \file   debugwindow
+ *  \brief  This is debug window, with its class and function
+ *  \author Yang Liuming <dicksonliuming@gmail.com>
+ *  \version    v1.0
+ *  \date   2016-05
+ *
+ **************************************************************/
 #include "debugwindow.h"
 
 #include "buttomwindow.h"
