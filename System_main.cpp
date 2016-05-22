@@ -2,6 +2,7 @@
   * \file	System_main
   * \brief	Basic main Enter of Project
   * \author	Yang Liuming <dicksonliuming@gmail.com>
+  * \author Li Haotian <>
   * \version	V1.0
   * \date	2016-5
   *
