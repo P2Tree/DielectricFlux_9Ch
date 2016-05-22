@@ -4,9 +4,11 @@
 
 class ButtomWindow;
 class StandbyWindow;
+class DebugWindow;
 
 enum WindowFlag {
-    StandbyFlag
+    StandbyFlag,
+    DebugFlag
 };
 
 class WindowInterface
@@ -22,7 +24,7 @@ public:
 private:
     //ButtomWindow *buttomWindow;
     StandbyWindow *standbyWindow;
-
+    DebugWindow *debugWindow;
     static WindowFlag currentWindowFlag;
 };
 

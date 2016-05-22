@@ -11,17 +11,29 @@
 
 #include "buttomwindow.h"
 #include "standbywindow.h"
+#include "debugwindow.h"
 
 WindowFlag WindowInterface::currentWindowFlag = StandbyFlag;
 
 WindowInterface::WindowInterface()
 {
     //buttomWindow = new ButtomWindow;
+#if (DebugModE == OpenDebug)
+    debugWindow = new DebugWindow;
+    changeCurrentWindow(DebugFlag);
+#else
+    /// typically, without DEBUG mode, standby window is always default window
     standbyWindow = new StandbyWindow;
+    changeCurrentWindow(StandbyFlag);
+#endif
 }
 
 void WindowInterface::showWindow() {
+#if (DebugModE == OpenDebug)
+    debugWindow->show();
+#else
     standbyWindow->show();
+#endif
 }
 
 void WindowInterface::changeCurrentWindow(WindowFlag const flag) {

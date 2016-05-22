@@ -14,10 +14,6 @@ enum exception_t {
 
 };
 
-/// debug flag type
-enum debug_t {
-    OpenDebug,
-    CloseDebug
-};
+
 
 #endif // TYPES_H

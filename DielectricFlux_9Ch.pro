@@ -16,13 +16,15 @@ SOURCES += main.cpp \
     System_main.cpp \
     buttomwindow.cpp \
     windowinterface.cpp \
-    standbywindow.cpp
+    standbywindow.cpp \
+    debugwindow.cpp
 
 HEADERS  += \
     System_main.h \
     types.h \
     buttomwindow.h \
     windowinterface.h \
-    standbywindow.h
+    standbywindow.h \
+    debugwindow.h
 
 FORMS    +=
