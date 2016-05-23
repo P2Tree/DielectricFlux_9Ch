@@ -15,6 +15,7 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QVBoxLayout>
+#include <QApplication>
 
 DebugWindow::DebugWindow() : ButtomWindow()
 {
@@ -29,14 +30,13 @@ DebugWindow::DebugWindow() : ButtomWindow()
 }
 
 void DebugWindow::debugMessageBox(DebugWindow *const debugWindow) {
-    switch(QMessageBox::warning(debugWindow, "Debug Window", "debug content",
-                                QMessageBox::Ok, QMessageBox::Ok))
-    {
-    case QMessageBox::Ok:
-           break;
-    default:
-           break;
-    }
+    QMessageBox::warning(debugWindow, "Debug Window", "debug content",
+                                QMessageBox::Ok, QMessageBox::Ok);
+}
+
+void DebugWindow::debugMessageBox(DebugWindow *const debugWindow, QString const debugcontent) {
+    QMessageBox::warning(debugWindow, "Debug Window", debugcontent,
+                                QMessageBox::Ok, QMessageBox::Ok);
 }
 
 void DebugWindow::setupMainLayout () {
@@ -49,10 +49,17 @@ void DebugWindow::setupButtonLayout () {
     buttonLayout->addWidget(debugButton);
 }
 
-/// slot functions in debugWindow class
+void retranslateUi(DebugWindow* const debugWindow) {
+    debugWindow->setWindowTitle(QApplication::translate("DebugWindow",
+                               "DebugWindow", 0, QApplication::UnicodeUTF8));
+}
+/* slot functions in debugWindow class */
+
+/// This is the only key in debug module, you can change this function
+/// to show any paraments or contents in its clicked slots function.
 void DebugWindow::debugButtonClicked() {
     WindowInterface windowInterface;
     WindowFlag currentWindowFlag = windowInterface.getCurrentWindow();
     if (currentWindowFlag == DebugFlag)
-        debugMessageBox(this);
+        debugMessageBox(this, "currentWindowFlag == DebugFlag");
 }
