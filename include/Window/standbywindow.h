@@ -20,9 +20,15 @@ private:
     QPushButton *standbyButtonSetup;
     QPushButton *standbyButtonAbout;
 
+    /**
+      * \brief  rewrite the draw function
+      */
     void setupMainLayout(void);
     void setupButtonLayout(void);
 
+    /**
+      * \brief  translate the window
+      */
     void retranslateUi(StandbyWindow *const);
 };
 

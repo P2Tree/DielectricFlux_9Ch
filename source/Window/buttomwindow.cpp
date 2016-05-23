@@ -1,6 +1,7 @@
 /**
   * \file   ButtomWindow
   * \brief  window in buttom, include all class and function of it
+  * \brief  you can change window scale in buttomwindow.h with WIDTH and LENGTH
   * \author PWE(Yang Liuming) <dicksonliuming@gmail.com>
   * \version    v1.0
   * \date   2016-5
