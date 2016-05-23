@@ -5,6 +5,7 @@
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
 #include <QtGui/QLayout>
+#include <QApplication>
 
 StandbyWindow::StandbyWindow() : ButtomWindow()
 {
@@ -31,5 +32,6 @@ void StandbyWindow::setupButtonLayout () {
 }
 
 void retranslateUi(StandbyWindow * const standbyWindow) {
-
+    standbyWindow->setWindowTitle(QApplication::translate("StandbyWindow",
+                               "StandbyWindow", 0, QApplication::UnicodeUTF8));
 }

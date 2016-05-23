@@ -45,13 +45,21 @@ public:
     ~ButtomWindow();
 
 private:
+    // belong with window directly
     QGridLayout *centralLayout;
     QWidget *centralWidget;
 
-    static const u32_t WindowLengtH=800;
-    static const u32_t WindowWidtH=600;
+    static const u32_t WindowLengtH=LENGTH;
+    static const u32_t WindowWidtH=WIDTH;
 
+    /**
+      * \brief  draw window
+      */
     void setupUi(ButtomWindow *const);
+
+    /**
+      * \brief  translate window
+      */
     void retranslateUi(ButtomWindow *const);
 
 protected:
@@ -61,6 +69,10 @@ protected:
     //QPicture *mainLogo;
     QLabel *mainLogoTitle;	// will be replaced by interfaceLogo later
 
+    /**
+      * \brief  every window inherit bottomwindow should rewrite this two function\
+      *         to draw mainlayout and buttonlayout.
+      */
     virtual void setupMainLayout(void) = 0;
     virtual void setupButtonLayout(void) = 0;
 
