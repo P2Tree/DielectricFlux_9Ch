@@ -1,7 +1,7 @@
 /**
-  * \file   ButtomWindow
-  * \brief  window in buttom, include all class and function of it
-  * \brief  you can change window scale in buttomwindow.h with WIDTH and LENGTH
+  * \file   bottomWindow
+  * \brief  window in bottom, include all class and function of it
+  * \brief  you can change window scale in bottomwindow.h with WIDTH and LENGTH
   * \author PWE(Yang Liuming) <dicksonliuming@gmail.com>
   * \version    v1.0
   * \date   2016-5
@@ -9,9 +9,10 @@
   ********************************************************/
 
 
-#include "buttomwindow.h"
+#include "bottomwindow.h"
 
 #include "System_main.h"
+#include "windowinterface.h"
 #include "types.h"
 #include <QMainWindow>
 #include <QtGui/QGridLayout>
@@ -21,25 +22,24 @@
 #include <QtGui/QPushButton>
 #include <QtGui/QMessageBox>
 
-ButtomWindow::ButtomWindow(QWidget *parent) :
+BottomWindow::BottomWindow(QWidget *parent) :
     QMainWindow(parent)
 {
-
     setupUi(this);
     retranslateUi(this);
 
 }
 
-ButtomWindow::~ButtomWindow() {
+BottomWindow::~BottomWindow() {
 
 }
 
-void ButtomWindow::setupUi(ButtomWindow *buttomWindow) {
-    if (buttomWindow->objectName().isEmpty())
-        buttomWindow->setObjectName(QString::fromUtf8("ButtomWindow"));
-    buttomWindow->resize(WindowLengtH, WindowWidtH);
+void BottomWindow::setupUi(BottomWindow *bottomWindow) {
+    if (bottomWindow->objectName().isEmpty())
+        bottomWindow->setObjectName(QString::fromUtf8("bottomWindow"));
+    bottomWindow->resize(WindowLengtH, WindowWidtH);
 
-    centralWidget = new QWidget(buttomWindow);
+    centralWidget = new QWidget(bottomWindow);
     centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
 
     centralLayout = new QGridLayout;
@@ -57,14 +57,14 @@ void ButtomWindow::setupUi(ButtomWindow *buttomWindow) {
     centralLayout->addLayout(buttonLayout, 1, 1);
 
     centralWidget->setLayout(centralLayout);
-    buttomWindow->setCentralWidget(centralWidget);
+    bottomWindow->setCentralWidget(centralWidget);
 
 
 }
 
-void ButtomWindow::retranslateUi(ButtomWindow *buttomWindow) {
-    buttomWindow->setWindowTitle(QApplication::translate("ButtomWindow",
-                               "ButtomWindow", 0, QApplication::UnicodeUTF8));
+void BottomWindow::retranslateUi(BottomWindow *bottomWindow) {
+    bottomWindow->setWindowTitle(QApplication::translate("bottomWindow",
+                               "bottomWindow", 0, QApplication::UnicodeUTF8));
 }
 
 
