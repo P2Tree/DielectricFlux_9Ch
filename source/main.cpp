@@ -31,9 +31,10 @@
  * ***********************************************************/
 
 #include "System_main.h"
-#include "buttomwindow.h"
+#include "Bottomwindow.h"
 
 #include <QApplication>
+#include "types.h"
 
 int main(int argc, char *argv[])
 {

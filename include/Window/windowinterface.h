@@ -1,30 +1,42 @@
 #ifndef WINDOWINTERFACE_H
 #define WINDOWINTERFACE_H
 
-class ButtomWindow;
+//#include "standbywindow.h"
+//#include "debugwindow.h"
+#include "types.h"
+
 class StandbyWindow;
 class DebugWindow;
-
-enum WindowFlag {
-    StandbyFlag,
-    DebugFlag
-};
+class BottomWindow;
 
 class WindowInterface
 {
 public:
     WindowInterface();
 
-    void showWindow(void);
-
-    void changeCurrentWindow(WindowFlag const);
-    WindowFlag getCurrentWindow(void);
-
+    WindowFlag getWindowFlag();
+    bool changeWindow(WindowFlag const targetWindow,
+                      BottomWindow *const originWindow,
+                      bool const isOriginWindowClose);
+    void createWindow(WindowFlag const targetWindow);
 private:
-    //ButtomWindow *buttomWindow;
+    //BottomWindow *BottomWindow;
     StandbyWindow *standbyWindow;
     DebugWindow *debugWindow;
-    static WindowFlag currentWindowFlag;
+
+    /// this argument: currentWindowFlag, is not equal with currentWindowFlag
+    /// in other window class. It will be changed when window changed,
+    /// you can regard it as a pine to window.
+    /// By the way, in other window, currentWindwoFlag is const argument
+    static WindowFlag currentWindowFlag ;//= StandbyFlag;
+
+    /// This argument will control the show or hide of debug window.
+    /// If argument == OpenDebug, debug window will be always showed
+    /// in every boot of the application.
+    const debug_t ShowDebugWindoW;
+
+    void constructureWindow(WindowFlag const);
+    void changeCurrentWindowFlag(WindowFlag const);
 };
 
 #endif // WINDOWINTERFACE_H
