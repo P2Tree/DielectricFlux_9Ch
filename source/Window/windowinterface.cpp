@@ -9,37 +9,65 @@
   *********************************************************/
 #include "windowinterface.h"
 
-#include "buttomwindow.h"
+#include "bottomwindow.h"
 #include "standbywindow.h"
 #include "debugwindow.h"
+#include "types.h"
 
 WindowFlag WindowInterface::currentWindowFlag = StandbyFlag;
 
-WindowInterface::WindowInterface()
+WindowInterface::WindowInterface() : ShowDebugWindoW(BOOTDEBUG)
 {
-    //buttomWindow = new ButtomWindow;
-#if (DebugModE == OpenDebug)
-    debugWindow = new DebugWindow;
-    changeCurrentWindow(DebugFlag);
-#else
-    /// typically, without DEBUG mode, standby window is always default window
-    standbyWindow = new StandbyWindow;
-    changeCurrentWindow(StandbyFlag);
-#endif
 }
 
-void WindowInterface::showWindow() {
-#if (DebugModE == OpenDebug)
-    debugWindow->show();
-#else
-    standbyWindow->show();
-#endif
+void WindowInterface::constructureWindow(WindowFlag targetWindow) {
+    if (ShowDebugWindoW== OpenDebug) {
+        debugWindow = new DebugWindow;
+        changeCurrentWindowFlag(DebugFlag);
+        debugWindow->show();
+    }
+    else
+    {
+        switch (targetWindow) {
+        case StandbyFlag :
+            /// typically, without DEBUG mode, standby window is always default window
+            standbyWindow = new StandbyWindow;
+            changeCurrentWindowFlag(StandbyFlag);
+            standbyWindow->show();
+            break;
+        default :
+            // targetWindow error!
+            break;
+        }
+    }
 }
 
-void WindowInterface::changeCurrentWindow(WindowFlag const flag) {
+void WindowInterface::changeCurrentWindowFlag(WindowFlag const flag) {
     WindowInterface::currentWindowFlag = flag;
 }
 
-WindowFlag WindowInterface::getCurrentWindow() {
-    return WindowInterface::currentWindowFlag;
+WindowFlag WindowInterface::getWindowFlag() {
+    return currentWindowFlag;
+}
+
+bool WindowInterface::changeWindow(WindowFlag targetWindow,
+                                   BottomWindow *const originWindow,
+                                   bool const isOriginWindowClose) {
+    WindowFlag windowFlag = getWindowFlag();
+    WindowFlag originWindowFlag = originWindow->getCurrentWindowFlag();
+    if (windowFlag != originWindowFlag)
+        // It means that this function called not right,
+        // originWindow must be current window.
+        return 1;
+    if (windowFlag == targetWindow)
+        // It means that this function called not right,
+        // originWindow must be different with targetWindow.
+        return 1;
+
+    createWindow(targetWindow);
+    return 0;
+}
+
+void WindowInterface::createWindow(WindowFlag targetWindow) {
+    constructureWindow(targetWindow);
 }

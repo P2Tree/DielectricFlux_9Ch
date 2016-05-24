@@ -34,10 +34,10 @@ void System_initialization() {
 
     // reading boot file and initialize system variables
 
-    /// Initialization all needed window, it always upload buttomwindow and standbywindow.
+    /// Initialization all needed window, it always upload Bottomwindow and standbywindow.
     /// An interface of window is set.
     WindowInterface windowInterface;
-    windowInterface.showWindow();
+    windowInterface.createWindow(StandbyFlag);
 
 
 }

@@ -3,7 +3,7 @@
 #define SYSTEM_MAIN_H
 
 #include "types.h"
-#include "buttomwindow.h"
+#include "bottomwindow.h"
 #include "windowinterface.h"
 
 /**

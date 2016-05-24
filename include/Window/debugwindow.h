@@ -1,51 +1,55 @@
 #ifndef DEBUGWINDOW_H
 #define DEBUGWINDOW_H
 
-#include "buttomwindow.h"
-
-/// debug flag type
-enum debug_t {
-    OpenDebug,
-    CloseDebug
-};
+#include "bottomwindow.h"
+#include "types.h"
 
 class QPushButton;
 class QString;
 
-class DebugWindow : public ButtomWindow
+
+class DebugWindow : public BottomWindow
 {
     Q_OBJECT
 
 public:
     DebugWindow();
 
-    /// debug button can not only show in debug window, but can show in normal
-    /// window if you want to open debug message box. use this function.
-    /// TODO (Yang Liuming) <dicksonliuming@gmail.com>
+    /**
+      * \brief  this function can get window flag of its window.
+      */
+    WindowFlag getCurrentWindowFlag(void);
+protected:
+    // I move the DebugModE in types.h file.
+    //const debug_t DebugModE;//DEBUG;
+
 private:
-    void debugMessageBox(DebugWindow *const);
-    void debugMessageBox(DebugWindow *const, QString const);
-    void setupMainLayout();
-    void setupButtonLayout();
+    void setupMainLayout(void);
+    void setupButtonLayout(void);
+
     QString debugWindowTitle;
     QLabel *debugMainDeclare;
+
+    /// debug button can not only show in debug window, but can show in normal
+    /// window if you want to open debug message box.
+    /// Another const argument: DebugModE in types.h can control this.
     QPushButton *debugButton;
 
-    /// DebugModE is so important that without DebugModE=DEBUG, no DebugWindow
-    /// object can be complete constructed.
-    static const debug_t DebugModE = OpenDebug;
+    QPushButton *returnButton;
 
+    WindowFlag const currentWindowFlag;
+
+    void debugMessageBox(DebugWindow *const);
+    void debugMessageBox(DebugWindow *const, QString const);
     /**
       * \brief  translate the window
       */
     void retranslateUi(DebugWindow *const);
 
-public slots:
 
-    /**
-      * \brief  triggered when debugbutton was clicked. slot function.
-      */
-    void debugButtonClicked();
+public slots:
+    void debugButtonClicked(void);
+    //void returnButtonClicked(void);
 };
 
 #endif // DEBUGWINDOW_H

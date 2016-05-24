@@ -1,5 +1,5 @@
 /**
-  *     ButtomWindow:
+  *     bottomWindow:
   *     centralWidget: centralLayout:
   *     |----------------------------------------|
   *     |       mainTitle       | mainLogo(Title)|
@@ -14,16 +14,17 @@
   *     |                       |                |
   *     |-----------------------|----------------|
   *
-  *     centralWidget is central widget of ButtomWindow,
+  *     centralWidget is central widget of bottomWindow,
   *     and it is also the central widget of other window
   *
   **************************************************/
 
-#ifndef BUTTOMWINDOW_H
-#define BUTTOMWINDOW_H
+#ifndef BOTTOMWINDOW_H
+#define BOTTOMWINDOW_H
 
 #include <QMainWindow>
-#include "../types.h"
+#include "types.h"
+//#include "windowinterface.h"
 
 //contrl panel
 #define LENGTH  800
@@ -35,15 +36,19 @@ class QLabel;
 class QVBoxLayout;
 class QWidget;
 class QPushButton;
+class QString;
 
 /// window length and width is compatible with the Display Screen
-class ButtomWindow : public QMainWindow
+class BottomWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit ButtomWindow(QWidget *parent = 0);
-    ~ButtomWindow();
+    explicit BottomWindow(QWidget *parent = 0);
+    virtual ~BottomWindow();
 
+    QPushButton *debugButton;
+
+    virtual WindowFlag getCurrentWindowFlag(void) = 0;
 private:
     // belong with window directly
     QGridLayout *centralLayout;
@@ -52,15 +57,21 @@ private:
     static const u32_t WindowLengtH=LENGTH;
     static const u32_t WindowWidtH=WIDTH;
 
+    /// This argument: currentWindowFlag, not be used in BottomWindow
+    /// class, but in every class inherit BottomWindow, currentWindowFlag
+    /// must be set and initialize. Also, virtual function: getCurrentWindowFlag()
+    /// should be realized in son classes, it can get the currentWindowFlag.
+    //WindowFlag const currentWindowFlag;
+
     /**
       * \brief  draw window
       */
-    void setupUi(ButtomWindow *const);
+    void setupUi(BottomWindow *const);
 
     /**
       * \brief  translate window
       */
-    void retranslateUi(ButtomWindow *const);
+    void retranslateUi(BottomWindow *const);
 
 protected:
     QGridLayout *mainLayout;
@@ -76,10 +87,11 @@ protected:
     virtual void setupMainLayout(void) = 0;
     virtual void setupButtonLayout(void) = 0;
 
+
 signals:
 
 public slots:
 
 };
 
-#endif // BUTTOMWINDOW_H
+#endif // BOTTOMWINDOW_H
