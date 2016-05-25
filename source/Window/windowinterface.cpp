@@ -28,17 +28,21 @@ void WindowInterface::constructureWindow(WindowFlag targetWindow) {
     }
     else
     {
-        switch (targetWindow) {
-        case StandbyFlag :
-            /// typically, without DEBUG mode, standby window is always default window
-            standbyWindow = new StandbyWindow;
-            changeCurrentWindowFlag(StandbyFlag);
-            standbyWindow->show();
-            break;
-        default :
-            // targetWindow error!
-            break;
-        }
+        constructureWindowWithoutDebug(targetWindow);
+    }
+}
+
+void WindowInterface::constructureWindowWithoutDebug(WindowFlag const targetWindow) {
+    switch (targetWindow) {
+    case StandbyFlag :
+        /// typically, without DEBUG mode, standby window is always default window
+        standbyWindow = new StandbyWindow;
+        changeCurrentWindowFlag(StandbyFlag);
+        standbyWindow->show();
+        break;
+    default :
+        // targetWindow error!
+        break;
     }
 }
 
@@ -50,22 +54,28 @@ WindowFlag WindowInterface::getWindowFlag() {
     return currentWindowFlag;
 }
 
-bool WindowInterface::changeWindow(WindowFlag targetWindow,
+void WindowInterface::destructureWindow(BottomWindow *const window) {
+    window->close();
+}
+
+ReturnStatus WindowInterface::changeWindow(WindowFlag targetWindow,
                                    BottomWindow *const originWindow,
-                                   bool const isOriginWindowClose) {
+                                   WindowStatus const isOriginWindowClose) {
     WindowFlag windowFlag = getWindowFlag();
     WindowFlag originWindowFlag = originWindow->getCurrentWindowFlag();
     if (windowFlag != originWindowFlag)
         // It means that this function called not right,
         // originWindow must be current window.
-        return 1;
+        return Error1;
     if (windowFlag == targetWindow)
         // It means that this function called not right,
         // originWindow must be different with targetWindow.
-        return 1;
+        return Error1;
 
-    createWindow(targetWindow);
-    return 0;
+    constructureWindowWithoutDebug(targetWindow);
+    if (isOriginWindowClose == Close)
+        destructureWindow(originWindow);
+    return Done;
 }
 
 void WindowInterface::createWindow(WindowFlag targetWindow) {

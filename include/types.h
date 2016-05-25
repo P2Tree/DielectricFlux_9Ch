@@ -31,7 +31,7 @@ typedef enum {
 /// Another const argument: ShowDebugWindoW(controled by BOOTDEBUG),
 /// in windowinterface, will control the debug window.
 #define DEBUG       OpenDebug      // control debugButton in normal window
-#define BOOTDEBUG   CloseDebug       // control debug window in boot
+#define BOOTDEBUG   OpenDebug       // control debug window in boot
 
 const debug_t DebugModE = DEBUG;
 
@@ -42,4 +42,16 @@ typedef enum {
     DebugFlag
 }WindowFlag;
 
+/// WindowStatus is used to indicate the window status in
+/// window control function.
+typedef enum {
+    Open,
+    Close
+}WindowStatus;
+
+/// ReturnStatus is used to indicate the function return status.
+typedef enum {
+    Done,
+    Error1
+}ReturnStatus;
 #endif // TYPES_H
