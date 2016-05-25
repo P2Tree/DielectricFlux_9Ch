@@ -37,6 +37,7 @@ class QVBoxLayout;
 class QWidget;
 class QPushButton;
 class QString;
+class QSpacerItem;
 
 /// window length and width is compatible with the Display Screen
 class BottomWindow : public QMainWindow
@@ -76,9 +77,12 @@ private:
 protected:
     QGridLayout *mainLayout;
     QLabel *mainTitle;
+
+    QVBoxLayout *rightLayout;
     QVBoxLayout *buttonLayout;
     //QPicture *mainLogo;
     QLabel *mainLogoTitle;	// will be replaced by interfaceLogo later
+    QSpacerItem *buttonSpace;
 
     /**
       * \brief  every window inherit bottomwindow should rewrite this two function\
