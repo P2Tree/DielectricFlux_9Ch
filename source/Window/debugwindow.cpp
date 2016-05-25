@@ -17,6 +17,7 @@
 #include <QGridLayout>
 #include <QVBoxLayout>
 #include <QApplication>
+#include <QStackedWidget>
 
 DebugWindow::DebugWindow() : BottomWindow() , currentWindowFlag(DebugFlag)
 {
