@@ -24,7 +24,6 @@ DebugWindow::DebugWindow() : BottomWindow() , currentWindowFlag(DebugFlag)
     mainTitle->setText(debugWindowTitle);
     setupMainLayout();
     setupButtonLayout();
-    connect(debugButton, SIGNAL(clicked()), this, SLOT(debugButtonClicked()));
 }
 
 
@@ -38,6 +37,8 @@ void DebugWindow::setupButtonLayout () {
     returnButton = new QPushButton(tr("return"));
     buttonLayout->addWidget(debugButton);
     buttonLayout->addWidget(returnButton);
+    connect(debugButton, SIGNAL(clicked()), this, SLOT(debugButtonClicked()));
+    connect(returnButton, SIGNAL(clicked()), this, SLOT(returnButtonClicked()));
 }
 
 WindowFlag DebugWindow::getCurrentWindowFlag() {
@@ -71,10 +72,13 @@ void DebugWindow::debugButtonClicked() {
         debugMessageBox(this, "currentWindowFlag == DebugFlag");
 }
 
-/*
-vodi DebugWindow::returnButtonClicked() {
+
+void DebugWindow::returnButtonClicked() {
     WindowInterface windowInterface;
-    windowInterface->
+    WindowFlag currentWindowFlag = windowInterface.getWindowFlag();
+    if (currentWindowFlag == DebugFlag) {
+        windowInterface.changeWindow(StandbyFlag, this, Close);
+    }
 
 }
-*/
+

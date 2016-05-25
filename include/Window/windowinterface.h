@@ -15,15 +15,16 @@ public:
     WindowInterface();
 
     WindowFlag getWindowFlag();
-    bool changeWindow(WindowFlag const targetWindow,
+    ReturnStatus changeWindow(WindowFlag const targetWindow,
                       BottomWindow *const originWindow,
-                      bool const isOriginWindowClose);
+                      WindowStatus const isOriginWindowClose);
     void createWindow(WindowFlag const targetWindow);
 private:
-    //BottomWindow *BottomWindow;
+    /* data member */
     StandbyWindow *standbyWindow;
     DebugWindow *debugWindow;
 
+    /* special data member */
     /// this argument: currentWindowFlag, is not equal with currentWindowFlag
     /// in other window class. It will be changed when window changed,
     /// you can regard it as a pine to window.
@@ -35,8 +36,30 @@ private:
     /// in every boot of the application.
     const debug_t ShowDebugWindoW;
 
-    void constructureWindow(WindowFlag const);
+    /* member function */
+    /**
+      * \brief  this function is used to change flag with window changed
+      * \brief  when window changed, this functino must be called.
+      */
     void changeCurrentWindowFlag(WindowFlag const);
+
+    /**
+      * \brief  this function can constructure window, if DebugModE is
+      *         set in types.h, this function will always open debug window
+      */
+    void constructureWindow(WindowFlag const);
+
+    /**
+      * \brief  this function can constructure window and don't check
+      *         DebugModE, can not open debug window.
+      * \brief  Compare with constructureWindow.
+      */
+    void constructureWindowWithoutDebug(WindowFlag const);
+
+    /**
+      * \brief  this function can destructure window.
+      */
+    void destructureWindow(BottomWindow *const window);
 };
 
 #endif // WINDOWINTERFACE_H

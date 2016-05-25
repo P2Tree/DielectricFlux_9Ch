@@ -49,7 +49,7 @@ private:
 
 public slots:
     void debugButtonClicked(void);
-    //void returnButtonClicked(void);
+    void returnButtonClicked(void);
 };
 
 #endif // DEBUGWINDOW_H
