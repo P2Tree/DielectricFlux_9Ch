@@ -30,7 +30,7 @@ DebugWindow::DebugWindow() : BottomWindow() , currentWindowFlag(DebugFlag)
 
 void DebugWindow::setupMainLayout () {
     debugMainDeclare = new QLabel(tr("This is Debug Window"));
-    mainLayout->addWidget(debugMainDeclare);
+    //mainLayout->addWidget(debugMainDeclare);
 }
 
 void DebugWindow::setupButtonLayout () {

@@ -21,7 +21,7 @@ StandbyWindow::StandbyWindow() : BottomWindow(), currentWindowFlag(StandbyFlag)
 
 void StandbyWindow::setupMainLayout () {
     standbyMainDeclare = new QLabel(tr("This is Standby Window"));
-    mainLayout->addWidget(standbyMainDeclare);
+    //mainLayout->addWidget(standbyMainDeclare);
 }
 
 void StandbyWindow::setupButtonLayout () {
