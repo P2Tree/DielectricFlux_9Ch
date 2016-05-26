@@ -4,14 +4,16 @@
   *     |----------------------------------------|
   *     |       mainTitle       | mainLogo(Title)|
   *     |-----------------------|----------------|
-  *     |                       |                |
-  *     |                       |                |
-  *     |                       |                |
-  *     |       mainLayout      |  buttonLayout  |
-  *     |      (redefined by    | (redefined by  |
-  *     |       other window)   |  other window) |
-  *     |                       |                |
-  *     |                       |                |
+  *     |                       |      ---       |_
+  *     |                       |       <        | \
+  *     |                       |       >        | |
+  *     |                       |      ---       | |
+  *     |                       |----------------| |
+  *     |      mainLayout       |                | > rightLayout
+  *     |    (redefined by      |                | |
+  *     |     other window)     |  buttonLayout  | |
+  *     |                       |                | |
+  *     |                       |                | /
   *     |-----------------------|----------------|
   *
   *     centralWidget is central widget of bottomWindow,
@@ -30,6 +32,7 @@
 #define LENGTH  800
 #define WIDTH   600
 
+QT_BEGIN_NAMESPACE
 class QMainWindow;
 class QGridLayout;
 class QLabel;
@@ -38,6 +41,9 @@ class QWidget;
 class QPushButton;
 class QString;
 class QSpacerItem;
+class QFrame;
+class QStatusBar;
+QT_END_NAMESPACE
 
 /// window length and width is compatible with the Display Screen
 class BottomWindow : public QMainWindow
@@ -75,15 +81,23 @@ private:
     void retranslateUi(BottomWindow *const);
 
 protected:
-    QGridLayout *mainLayout;
-    QLabel *mainTitle;
 
-    QVBoxLayout *rightLayout;
-    QVBoxLayout *buttonLayout;
+    // central window in mainwindow
+    QWidget *mainWidget;
+    QLabel *mainTitle;
     //QPicture *mainLogo;
     QLabel *mainLogoTitle;	// will be replaced by interfaceLogo later
-    QSpacerItem *buttonSpace;
+    QWidget *layoutWidget;
 
+    // rightLayout include buttonUpSpacer and buttonDownSpacer and
+    // buttons in the middle of this two spacer.
+    QVBoxLayout *rightLayout;
+    QSpacerItem *buttonUpSpacer;
+    QVBoxLayout *buttonLayout;
+    QSpacerItem *buttonDownSpacer;
+
+    QFrame *mainLine;
+    QStatusBar *statusBar;
     /**
       * \brief  every window inherit bottomwindow should rewrite this two function\
       *         to draw mainlayout and buttonlayout.
