@@ -19,7 +19,10 @@ SOURCES += \
     source/Window/windowinterface.cpp \
     source/Window/standbywindow.cpp \
     source/Window/debugwindow.cpp \
-    source/Window/bottomwindow.cpp
+    source/Window/bottomwindow.cpp \
+    source/timerservice.cpp \
+    source/messagequeue.cpp \
+    source/serviceinterface.cpp
 
 HEADERS  += \
     include/types.h \
@@ -27,6 +30,9 @@ HEADERS  += \
     include/Window/windowinterface.h \
     include/Window/standbywindow.h \
     include/Window/debugwindow.h \
-    include/Window/bottomwindow.h
+    include/Window/bottomwindow.h \
+    include/timerservice.h \
+    include/messagequeue.h \
+    include/serviceinterface.h
 
 FORMS    +=

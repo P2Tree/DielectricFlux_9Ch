@@ -1,21 +1,22 @@
 /**
   *     bottomWindow:
   *     centralWidget: centralLayout:
-  *     |----------------------------------------|
-  *     |       mainTitle       | mainLogo(Title)|
-  *     |-----------------------|----------------|
-  *     |                       |      ---       |_
-  *     |                       |       <        | \
-  *     |                       |       >        | |
-  *     |                       |      ---       | |
-  *     |                       |----------------| |
-  *     |      mainLayout       |                | > rightLayout
-  *     |    (redefined by      |                | |
-  *     |     other window)     |  buttonLayout  | |
-  *     |                       |                | |
-  *     |                       |                | /
-  *     |-----------------------|----------------|
-  *
+  *     |---------------------------------------|
+  *     |       mainTitle       | mainLogo      |
+  *     |-----------------------|---------------|
+  *     |                       |      ---      |_
+  *     |                       |       <       | \
+  *     |                       |       >       | |
+  *     |                       |      ---      | |
+  *     |                       |---------------| |
+  *     |      mainWidget       |               | > rightLayout
+  *     |    (redefined by      |               | |
+  *     |     other window)     |  buttonLayout | |
+  *     |                       |               | |
+  *     |                       |               | /
+  *     |-----------------------|---------------|
+  *     |       statusBar       |               |
+  *     |-----------------------|---------------|
   *     centralWidget is central widget of bottomWindow,
   *     and it is also the central widget of other window
   *
@@ -43,6 +44,8 @@ class QString;
 class QSpacerItem;
 class QFrame;
 class QStatusBar;
+class QDialog;
+class QFormLayout;
 QT_END_NAMESPACE
 
 /// window length and width is compatible with the Display Screen
@@ -53,9 +56,8 @@ public:
     explicit BottomWindow(QWidget *parent = 0);
     virtual ~BottomWindow();
 
-    QPushButton *debugButton;
 
-    virtual WindowFlag getCurrentWindowFlag(void) = 0;
+    virtual WindowFlag_t getCurrentWindowFlag(void) = 0;
 private:
     // belong with window directly
     QGridLayout *centralLayout;
@@ -68,7 +70,7 @@ private:
     /// class, but in every class inherit BottomWindow, currentWindowFlag
     /// must be set and initialize. Also, virtual function: getCurrentWindowFlag()
     /// should be realized in son classes, it can get the currentWindowFlag.
-    //WindowFlag const currentWindowFlag;
+    //WindowFlag_t const currentWindowFlag;
 
     /**
       * \brief  draw window
@@ -80,6 +82,7 @@ private:
       */
     void retranslateUi(BottomWindow *const);
 
+
 protected:
 
     // central window in mainwindow
@@ -87,7 +90,6 @@ protected:
     QLabel *mainTitle;
     //QPicture *mainLogo;
     QLabel *mainLogoTitle;	// will be replaced by interfaceLogo later
-    QWidget *layoutWidget;
 
     // rightLayout include buttonUpSpacer and buttonDownSpacer and
     // buttons in the middle of this two spacer.
@@ -97,13 +99,23 @@ protected:
     QSpacerItem *buttonDownSpacer;
 
     QFrame *mainLine;
+    QFrame *mainHLine;
     QStatusBar *statusBar;
+
+    QDialog *debugDialog;
+    QFormLayout *debugDialogLayout;
     /**
       * \brief  every window inherit bottomwindow should rewrite this two function\
       *         to draw mainlayout and buttonlayout.
       */
     virtual void setupMainLayout(void) = 0;
     virtual void setupButtonLayout(void) = 0;
+
+    virtual void debugMessageBox(BottomWindow *const, QString const) = 0;
+    virtual void setupDebugDialog(BottomWindow *const) = 0;
+
+    u32_t getMainWidgetWidth(void);
+    u32_t getMainWidgetHeight(void);
 
 
 signals:

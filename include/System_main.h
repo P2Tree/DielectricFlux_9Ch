@@ -2,9 +2,6 @@
 #ifndef SYSTEM_MAIN_H
 #define SYSTEM_MAIN_H
 
-#include "types.h"
-#include "bottomwindow.h"
-#include "windowinterface.h"
 
 /**
  * @brief Enter of main

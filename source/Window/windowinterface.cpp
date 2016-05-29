@@ -14,14 +14,14 @@
 #include "debugwindow.h"
 #include "types.h"
 
-WindowFlag WindowInterface::currentWindowFlag = StandbyFlag;
+WindowFlag_t WindowInterface::currentWindowFlag = StandbyFlag;
 
 WindowInterface::WindowInterface() : ShowDebugWindoW(BOOTDEBUG)
 {
 }
 
-void WindowInterface::constructureWindow(WindowFlag targetWindow) {
-    if (ShowDebugWindoW== OpenDebug) {
+void WindowInterface::constructureWindow(WindowFlag_t targetWindow) {
+    if (ShowDebugWindoW == OpenDebug) {
         debugWindow = new DebugWindow;
         changeCurrentWindowFlag(DebugFlag);
         debugWindow->show();
@@ -32,7 +32,7 @@ void WindowInterface::constructureWindow(WindowFlag targetWindow) {
     }
 }
 
-void WindowInterface::constructureWindowWithoutDebug(WindowFlag const targetWindow) {
+void WindowInterface::constructureWindowWithoutDebug(WindowFlag_t const targetWindow) {
     switch (targetWindow) {
     case StandbyFlag :
         /// typically, without DEBUG mode, standby window is always default window
@@ -46,11 +46,11 @@ void WindowInterface::constructureWindowWithoutDebug(WindowFlag const targetWind
     }
 }
 
-void WindowInterface::changeCurrentWindowFlag(WindowFlag const flag) {
+void WindowInterface::changeCurrentWindowFlag(WindowFlag_t const flag) {
     WindowInterface::currentWindowFlag = flag;
 }
 
-WindowFlag WindowInterface::getWindowFlag() {
+WindowFlag_t WindowInterface::getWindowFlag() {
     return currentWindowFlag;
 }
 
@@ -58,11 +58,11 @@ void WindowInterface::destructureWindow(BottomWindow *const window) {
     window->close();
 }
 
-ReturnStatus WindowInterface::changeWindow(WindowFlag targetWindow,
+ReturnStatus_t WindowInterface::changeWindow(WindowFlag_t targetWindow,
                                    BottomWindow *const originWindow,
-                                   WindowStatus const isOriginWindowClose) {
-    WindowFlag windowFlag = getWindowFlag();
-    WindowFlag originWindowFlag = originWindow->getCurrentWindowFlag();
+                                   WindowStatus_t const isOriginWindowClose) {
+    WindowFlag_t windowFlag = getWindowFlag();
+    WindowFlag_t originWindowFlag = originWindow->getCurrentWindowFlag();
     if (windowFlag != originWindowFlag)
         // It means that this function called not right,
         // originWindow must be current window.
@@ -78,6 +78,6 @@ ReturnStatus WindowInterface::changeWindow(WindowFlag targetWindow,
     return Done;
 }
 
-void WindowInterface::createWindow(WindowFlag targetWindow) {
+void WindowInterface::createWindow(WindowFlag_t targetWindow) {
     constructureWindow(targetWindow);
 }

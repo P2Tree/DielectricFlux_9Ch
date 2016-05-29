@@ -35,23 +35,37 @@ typedef enum {
 
 const debug_t DebugModE = DEBUG;
 
-
+/// WindowFlag_t is used to show which window in current workspace.
 typedef enum {
     BottomFlag,
     StandbyFlag,
     DebugFlag
-}WindowFlag;
+}WindowFlag_t;
 
-/// WindowStatus is used to indicate the window status in
+/// WindowStatus_t is used to indicate the window status in
 /// window control function.
 typedef enum {
     Open,
     Close
-}WindowStatus;
+}WindowStatus_t;
 
-/// ReturnStatus is used to indicate the function return status.
+/// ReturnStatus_t is used to indicate the function return status.
 typedef enum {
     Done,
     Error1
-}ReturnStatus;
+}ReturnStatus_t;
+
+typedef u32_t   TimerId_t;
+typedef u32_t   TimerCount_t;
+
+typedef enum {
+    TimerRun,
+    TimerOver
+}TimerStatus_t;
+
+typedef enum {
+    RegisterOn,
+    RegisterOff
+}RegisterStatus_t;
+
 #endif // TYPES_H

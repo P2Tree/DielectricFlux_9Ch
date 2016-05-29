@@ -16,7 +16,7 @@ class StandbyWindow : public BottomWindow
 public:
     StandbyWindow();
 
-    WindowFlag getCurrentWindowFlag(void);
+    WindowFlag_t getCurrentWindowFlag(void);
 private:
     QString standbyWindowTitle;
     QLabel *standbyMainDeclare;
@@ -26,15 +26,15 @@ private:
     QPushButton *standbyButtonAbout;
     QPushButton *debugButton;
 
-    WindowFlag const currentWindowFlag;
+    WindowFlag_t const currentWindowFlag;
     /**
       * \brief  rewrite the draw function
       */
     void setupMainLayout(void);
     void setupButtonLayout(void);
 
-    void debugMessageBox(StandbyWindow *const);
-    void debugMessageBox(StandbyWindow *const, QString const);
+    void debugMessageBox(BottomWindow *const, QString const);
+    void setupDebugDialog(BottomWindow *const);
     /**
       * \brief  translate the window
       */

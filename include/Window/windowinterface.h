@@ -14,11 +14,11 @@ class WindowInterface
 public:
     WindowInterface();
 
-    WindowFlag getWindowFlag();
-    ReturnStatus changeWindow(WindowFlag const targetWindow,
+    WindowFlag_t getWindowFlag();
+    ReturnStatus_t changeWindow(WindowFlag_t const targetWindow,
                       BottomWindow *const originWindow,
-                      WindowStatus const isOriginWindowClose);
-    void createWindow(WindowFlag const targetWindow);
+                      WindowStatus_t const isOriginWindowClose);
+    void createWindow(WindowFlag_t const targetWindow);
 private:
     /* data member */
     StandbyWindow *standbyWindow;
@@ -29,7 +29,7 @@ private:
     /// in other window class. It will be changed when window changed,
     /// you can regard it as a pine to window.
     /// By the way, in other window, currentWindwoFlag is const argument
-    static WindowFlag currentWindowFlag ;//= StandbyFlag;
+    static WindowFlag_t currentWindowFlag ;//= StandbyFlag;
 
     /// This argument will control the show or hide of debug window.
     /// If argument == OpenDebug, debug window will be always showed
@@ -41,20 +41,20 @@ private:
       * \brief  this function is used to change flag with window changed
       * \brief  when window changed, this functino must be called.
       */
-    void changeCurrentWindowFlag(WindowFlag const);
+    void changeCurrentWindowFlag(WindowFlag_t const);
 
     /**
       * \brief  this function can constructure window, if DebugModE is
       *         set in types.h, this function will always open debug window
       */
-    void constructureWindow(WindowFlag const);
+    void constructureWindow(WindowFlag_t const);
 
     /**
       * \brief  this function can constructure window and don't check
       *         DebugModE, can not open debug window.
       * \brief  Compare with constructureWindow.
       */
-    void constructureWindowWithoutDebug(WindowFlag const);
+    void constructureWindowWithoutDebug(WindowFlag_t const);
 
     /**
       * \brief  this function can destructure window.
