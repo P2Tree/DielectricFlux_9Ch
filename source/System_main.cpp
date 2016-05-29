@@ -10,6 +10,12 @@
 
 #include "System_main.h"
 
+#include "types.h"
+#include "bottomwindow.h"
+#include "windowinterface.h"
+#include "timerservice.h"
+#include "serviceinterface.h"
+
 void System_main() {
     try {
         /// TODO(Yang Liuming) PoweroffRecoveryCheck
@@ -25,19 +31,24 @@ void System_main() {
 void System_initialization() {
 
     // device service initialization
-
-    // timer service initialization
+    ServiceInterface *serviceInterface = new ServiceInterface;
 
     // message queue initialization
+
+    // timer service initialization
+    /// system timer is 1 second timer
+    TimerService *systemTimer = new TimerService;
+    systemTimer->startSystemTimer();
 
     // system file initialization
 
     // reading boot file and initialize system variables
 
-    /// Initialization all needed window, it always upload buttomwindow and standbywindow.
+    // window initialization
+    /// Initialization all needed window, it always upload Bottomwindow and standbywindow.
     /// An interface of window is set.
     WindowInterface windowInterface;
-    windowInterface.showWindow();
+    windowInterface.createWindow(StandbyFlag);
 
 
 }

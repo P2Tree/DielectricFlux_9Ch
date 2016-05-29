@@ -10,7 +10,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = DielectricFlux_9Ch
 TEMPLATE = app
-
 INCLUDEPATH += ./include/window/ \
     ./include
 
@@ -20,7 +19,10 @@ SOURCES += \
     source/Window/windowinterface.cpp \
     source/Window/standbywindow.cpp \
     source/Window/debugwindow.cpp \
-    source/Window/buttomwindow.cpp
+    source/Window/bottomwindow.cpp \
+    source/timerservice.cpp \
+    source/messagequeue.cpp \
+    source/serviceinterface.cpp
 
 HEADERS  += \
     include/types.h \
@@ -28,6 +30,9 @@ HEADERS  += \
     include/Window/windowinterface.h \
     include/Window/standbywindow.h \
     include/Window/debugwindow.h \
-    include/Window/buttomwindow.h
+    include/Window/bottomwindow.h \
+    include/timerservice.h \
+    include/messagequeue.h \
+    include/serviceinterface.h
 
 FORMS    +=
