@@ -18,7 +18,7 @@ public:
     /**
       * \brief  this function can get window flag of its window.
       */
-    WindowFlag getCurrentWindowFlag(void);
+    WindowFlag_t getCurrentWindowFlag(void);
 protected:
     // I move the DebugModE in types.h file.
     //const debug_t DebugModE;//DEBUG;
@@ -37,10 +37,10 @@ private:
 
     QPushButton *returnButton;
 
-    WindowFlag const currentWindowFlag;
+    WindowFlag_t const currentWindowFlag;
 
-    void debugMessageBox(DebugWindow *const);
-    void debugMessageBox(DebugWindow *const, QString const);
+    void debugMessageBox(BottomWindow *const, QString const);
+    void setupDebugDialog(BottomWindow *const);
     /**
       * \brief  translate the window
       */

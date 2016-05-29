@@ -24,13 +24,13 @@
 #include <QSpacerItem>
 #include <QPalette>
 #include <QStatusBar>
+#include <QFormLayout>
 
 BottomWindow::BottomWindow(QWidget *parent) :
     QMainWindow(parent)
 {
     setupUi(this);
     retranslateUi(this);
-
 }
 
 BottomWindow::~BottomWindow() {
@@ -40,7 +40,7 @@ BottomWindow::~BottomWindow() {
 void BottomWindow::setupUi(BottomWindow *bottomWindow) {
     if (bottomWindow->objectName().isEmpty())
         bottomWindow->setObjectName(QString::fromUtf8("bottomWindow"));
-    Qt::WindowFlags flags = 0;
+    Qt::WindowFlags flags = 0;  // not WindowFlag_t, it is used to set window types
     flags |= Qt::WindowMinimizeButtonHint;
     bottomWindow->setWindowFlags(flags);
     bottomWindow->setFixedSize(WindowLengtH, WindowWidtH);
@@ -55,15 +55,10 @@ void BottomWindow::setupUi(BottomWindow *bottomWindow) {
     sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
     centralWidget->setSizePolicy(sizePolicy);
 
-    layoutWidget = new QWidget(centralWidget);
-    layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-    layoutWidget->setGeometry(QRect(-1, -1, 800, 580));
-
-    centralLayout = new QGridLayout(layoutWidget);
+    centralLayout = new QGridLayout();
     centralLayout->setSpacing(0);
     centralLayout->setContentsMargins(0, 0, 0, 0);
     centralLayout->setObjectName(QString::fromUtf8("centralLayout"));
-    centralLayout->setContentsMargins(0, 0, 0, 0);
 
     QFont font;
     font.setFamily(QString::fromUtf8("Consolas"));
@@ -71,7 +66,7 @@ void BottomWindow::setupUi(BottomWindow *bottomWindow) {
     font.setBold(true);
     font.setWeight(75);
 
-    mainTitle = new QLabel(layoutWidget);
+    mainTitle = new QLabel();
     mainTitle->setText(tr("DielectricFlux 9 Channel"));
     mainTitle->setObjectName(QString::fromUtf8("mainTitle"));
     mainTitle->setFont(font);
@@ -85,7 +80,7 @@ void BottomWindow::setupUi(BottomWindow *bottomWindow) {
 
     ///TODO:Yang Liuming <dicksonliuming@gmail.com>
     // mainLogo
-    mainLogoTitle = new QLabel(layoutWidget);
+    mainLogoTitle = new QLabel();
     mainLogoTitle->setText(tr("CABR"));
     mainLogoTitle->setFont(font);
     mainLogoTitle->setFrameShape(QFrame::Box);
@@ -96,8 +91,9 @@ void BottomWindow::setupUi(BottomWindow *bottomWindow) {
 
     centralLayout->addWidget(mainLogoTitle, 0, 1, 1, 1);
 
-    mainWidget = new QWidget(layoutWidget);
+    mainWidget = new QWidget();
     mainWidget->setObjectName(QString::fromUtf8("mainWidget"));
+
     mainLine = new QFrame(mainWidget);
     mainLine->setObjectName(QString::fromUtf8("mainLine"));
     mainLine->setGeometry(QRect(590, 0, 20, 540));
@@ -105,13 +101,20 @@ void BottomWindow::setupUi(BottomWindow *bottomWindow) {
     mainLine->setFrameShape(QFrame::VLine);
     mainLine->setFrameShadow(QFrame::Sunken);
 
+    mainHLine = new QFrame(mainWidget);
+    mainHLine->setObjectName(QString::fromUtf8("mainHLine"));
+    mainHLine->setGeometry(QRect(0, 540, 20, 500));
+    mainHLine->setLineWidth(1);
+    mainHLine->setFrameShape(QFrame::HLine);
+    mainHLine->setFrameShadow(QFrame::Sunken);
+
     centralLayout->addWidget(mainWidget, 1, 0, 1, 1);
 
     rightLayout = new QVBoxLayout();
     rightLayout->setSpacing(6);
     rightLayout->setObjectName(QString::fromUtf8("rightLayout"));
-    buttonUpSpacer = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
+    buttonUpSpacer = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding);
     rightLayout->addItem(buttonUpSpacer);
 
     buttonLayout = new QVBoxLayout();
@@ -151,4 +154,11 @@ void BottomWindow::retranslateUi(BottomWindow *bottomWindow) {
 
 }
 
+u32_t BottomWindow::getMainWidgetWidth() {
+    return mainWidget->geometry().width();
+}
+
+u32_t BottomWindow::getMainWidgetHeight() {
+    return mainWidget->geometry().height();
+}
 
